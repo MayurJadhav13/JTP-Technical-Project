@@ -1,0 +1,18 @@
+# Ignore node_modules and build in frontend root
+
+frontend/node_modules
+frontend/build
+
+# Ignore Python cache and env files globally
+
+**/**pycache**
+**/_.pyc
+\*\*/_.pyo
+**/\*.pyd
+**/env/
+\*\*/.env
+
+# Ignore Dockerfiles and docker-compose from being copied unnecessarily
+
+Dockerfile
+docker-compose.yml
