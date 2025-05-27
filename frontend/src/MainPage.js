@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
 
 function MainPage() {
   const [image, setImage] = useState(null);
@@ -8,6 +8,8 @@ function MainPage() {
   const [history, setHistory] = useState([]);
   const [username, setUsername] = useState(""); // state for username
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showHistoryModal, setShowHistoryModal] = useState(false);
   const email = localStorage.getItem("email");
 
   // Fetch username based on email
@@ -61,6 +63,21 @@ function MainPage() {
     setSelectedImage(null);
   };
 
+  const handleHistoryClick = () => {
+    setShowHistoryModal(true);
+    setShowDropdown(false);
+  };
+
+  const closeHistoryModal = () => {
+    setShowHistoryModal(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("email");
+    localStorage.removeItem("username");
+    window.location.href = "/";
+  };
+
   // Styles
   const containerStyle = {
     maxWidth: "900px",
@@ -81,23 +98,74 @@ function MainPage() {
     fontWeight: "bold",
     borderRadius: "8px",
     position: "relative",
-    overflow: "hidden",
+    overflow: "visible",
   };
 
-  const userSectionStyle = {
+  const userIconContainerStyle = {
+    position: "relative",
     display: "flex",
     alignItems: "center",
-    gap: "20px",
-    fontSize: "16px",
+    cursor: "pointer",
   };
 
-  const logoutButtonStyle = {
-    backgroundColor: "#e94e77",
-    color: "white",
-    border: "none",
-    padding: "8px 14px",
-    borderRadius: "5px",
+  const userIconStyle = {
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    backgroundColor: "#357abd",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "18px",
+    fontWeight: "bold",
+    border: "2px solid white",
+  };
+
+  const dropdownStyle = {
+    position: "absolute",
+    top: "50px",
+    right: "0",
+    backgroundColor: "white",
+    color: "#333",
+    borderRadius: "8px",
+    boxShadow: "0 5px 20px rgba(0,0,0,0.15)",
+    padding: "15px",
+    minWidth: "200px",
+    zIndex: 1000,
+  };
+
+  const dropdownItemStyle = {
+    padding: "10px 15px",
     cursor: "pointer",
+    borderRadius: "5px",
+    marginBottom: "5px",
+    transition: "background-color 0.2s",
+  };
+
+  const historyModalStyle = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1001,
+    backdropFilter: "blur(5px)",
+  };
+
+  const historyModalContentStyle = {
+    backgroundColor: "white",
+    borderRadius: "12px",
+    padding: "30px",
+    maxWidth: "800px",
+    width: "90%",
+    maxHeight: "80vh",
+    overflow: "auto",
+    position: "relative",
+    boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
   };
 
   const uploadSectionStyle = {
@@ -207,12 +275,6 @@ function MainPage() {
     marginBottom: "20px",
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("email");
-    localStorage.removeItem("username");
-    window.location.href = "/";
-  };
-
   return (
     <div style={containerStyle}>
       {/* Background Animation Elements */}
@@ -286,7 +348,8 @@ function MainPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent)",
+            background:
+              "linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent)",
             zIndex: 0,
           }}
           animate={{
@@ -298,7 +361,7 @@ function MainPage() {
             ease: "linear",
           }}
         />
-        
+
         <motion.div
           style={{ position: "relative", zIndex: 1 }}
           initial={{ x: -20 }}
@@ -307,31 +370,57 @@ function MainPage() {
         >
           Product Recommendation App
         </motion.div>
-        
+
         <motion.div
-          style={{ ...userSectionStyle, position: "relative", zIndex: 1 }}
+          style={{ ...userIconContainerStyle, position: "relative", zIndex: 1 }}
           initial={{ x: 20 }}
           animate={{ x: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
+          onClick={() => setShowDropdown(!showDropdown)}
         >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-          >
-            Welcome, {username ? username : "User"}
-          </motion.span>
-          <motion.button
-            style={logoutButtonStyle}
-            onClick={handleLogout}
-            whileHover={{ 
-              backgroundColor: "#d63384",
-              scale: 1.05,
-            }}
+          <motion.div
+            style={userIconStyle}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            Logout
-          </motion.button>
+            {username ? username.charAt(0).toUpperCase() : "U"}
+          </motion.div>
+
+          <AnimatePresence>
+            {showDropdown && (
+              <motion.div
+                style={dropdownStyle}
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div
+                  style={{
+                    marginBottom: "15px",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                  }}
+                >
+                  Welcome, {username || "User"}
+                </div>
+                <motion.div
+                  style={dropdownItemStyle}
+                  whileHover={{ backgroundColor: "#f0f0f0" }}
+                  onClick={handleHistoryClick}
+                >
+                  View History
+                </motion.div>
+                <motion.div
+                  style={{ ...dropdownItemStyle, color: "#e94e77" }}
+                  whileHover={{ backgroundColor: "#fee" }}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </motion.header>
 
@@ -350,7 +439,8 @@ function MainPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.05), transparent)",
+            background:
+              "linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.05), transparent)",
             zIndex: 0,
           }}
           animate={{
@@ -362,7 +452,7 @@ function MainPage() {
             ease: "easeInOut",
           }}
         />
-        
+
         <motion.h3
           style={{ position: "relative", zIndex: 1 }}
           initial={{ opacity: 0 }}
@@ -371,7 +461,7 @@ function MainPage() {
         >
           Upload an Image to Get Recommendations
         </motion.h3>
-        
+
         <motion.input
           type="file"
           accept="image/*"
@@ -385,7 +475,12 @@ function MainPage() {
         <br />
         <motion.button
           onClick={handleRecommend}
-          style={{ padding: "10px 20px", fontSize: "16px", position: "relative", zIndex: 1 }}
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            position: "relative",
+            zIndex: 1,
+          }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.5 }}
@@ -416,7 +511,8 @@ function MainPage() {
               left: 0,
               right: 0,
               bottom: 0,
-              background: "linear-gradient(45deg, transparent, rgba(41, 128, 185, 0.03), transparent)",
+              background:
+                "linear-gradient(45deg, transparent, rgba(41, 128, 185, 0.03), transparent)",
               zIndex: 0,
             }}
             animate={{
@@ -428,7 +524,7 @@ function MainPage() {
               ease: "linear",
             }}
           />
-          
+
           <motion.h3
             style={{ textAlign: "center", position: "relative", zIndex: 1 }}
             initial={{ opacity: 0, y: -20 }}
@@ -437,8 +533,10 @@ function MainPage() {
           >
             Recommendations from Your Upload
           </motion.h3>
-          
-          <div style={{ ...imagesContainerStyle, position: "relative", zIndex: 1 }}>
+
+          <div
+            style={{ ...imagesContainerStyle, position: "relative", zIndex: 1 }}
+          >
             {recommendations.map((item, index) => (
               <motion.div
                 key={index}
@@ -494,7 +592,8 @@ function MainPage() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "linear-gradient(135deg, transparent, rgba(243, 156, 18, 0.03), transparent)",
+            background:
+              "linear-gradient(135deg, transparent, rgba(243, 156, 18, 0.03), transparent)",
             zIndex: 0,
           }}
           animate={{
@@ -507,7 +606,7 @@ function MainPage() {
             ease: "easeInOut",
           }}
         />
-        
+
         <motion.h3
           style={{ textAlign: "center", position: "relative", zIndex: 1 }}
           initial={{ opacity: 0, y: -20 }}
@@ -516,7 +615,7 @@ function MainPage() {
         >
           Your Previous Recommendations
         </motion.h3>
-        
+
         {getRandomHistory().length === 0 ? (
           <motion.p
             style={{ textAlign: "center", position: "relative", zIndex: 1 }}
@@ -527,7 +626,9 @@ function MainPage() {
             No history found. Upload images to get recommendations.
           </motion.p>
         ) : (
-          <div style={{ ...imagesContainerStyle, position: "relative", zIndex: 1 }}>
+          <div
+            style={{ ...imagesContainerStyle, position: "relative", zIndex: 1 }}
+          >
             {getRandomHistory().map((item, index) => (
               <motion.div
                 key={index}
@@ -569,6 +670,76 @@ function MainPage() {
         )}
       </motion.section>
 
+      {/* History Modal */}
+      <AnimatePresence>
+        {showHistoryModal && (
+          <motion.div
+            style={historyModalStyle}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={closeHistoryModal}
+          >
+            <motion.div
+              style={historyModalContentStyle}
+              initial={{ scale: 0.7, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.7, opacity: 0, y: 50 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <motion.button
+                style={closeButtonStyle}
+                onClick={closeHistoryModal}
+                whileHover={{
+                  backgroundColor: "#f0f0f0",
+                  color: "#333",
+                  scale: 1.1,
+                }}
+                whileTap={{ scale: 0.9 }}
+              >
+                ×
+              </motion.button>
+
+              <h2 style={{ marginBottom: "20px", color: "#333" }}>
+                Complete History
+              </h2>
+
+              {history.length === 0 ? (
+                <p style={{ textAlign: "center", color: "#666" }}>
+                  No history found. Upload images to get recommendations.
+                </p>
+              ) : (
+                <div style={imagesContainerStyle}>
+                  {history.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      style={imageBoxStyle}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05, duration: 0.3 }}
+                      whileHover={{
+                        scale: 1.05,
+                        boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
+                      }}
+                      onClick={() => handleImageClick(item)}
+                    >
+                      <img
+                        src={item.image_url}
+                        alt={item.product_name}
+                        style={imageStyle}
+                      />
+                      <p>{item.product_name}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Image Popup Modal */}
       <AnimatePresence>
         {selectedImage && (
@@ -591,16 +762,16 @@ function MainPage() {
               <motion.button
                 style={closeButtonStyle}
                 onClick={closeModal}
-                whileHover={{ 
+                whileHover={{
                   backgroundColor: "#f0f0f0",
                   color: "#333",
-                  scale: 1.1 
+                  scale: 1.1,
                 }}
                 whileTap={{ scale: 0.9 }}
               >
                 ×
               </motion.button>
-              
+
               <motion.img
                 src={selectedImage.image_url}
                 alt={selectedImage.product_name}
@@ -609,26 +780,30 @@ function MainPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1, duration: 0.3 }}
               />
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
-                <h2 style={{ 
-                  margin: "0 0 15px 0", 
-                  color: "#333",
-                  fontSize: "24px",
-                  fontWeight: "bold"
-                }}>
+                <h2
+                  style={{
+                    margin: "0 0 15px 0",
+                    color: "#333",
+                    fontSize: "24px",
+                    fontWeight: "bold",
+                  }}
+                >
                   {selectedImage.product_name}
                 </h2>
-                
-                <p style={{ 
-                  color: "#666", 
-                  lineHeight: "1.6",
-                  fontSize: "16px"
-                }}>
+
+                <p
+                  style={{
+                    color: "#666",
+                    lineHeight: "1.6",
+                    fontSize: "16px",
+                  }}
+                >
                   Click outside or press the × button to close this preview.
                 </p>
               </motion.div>
