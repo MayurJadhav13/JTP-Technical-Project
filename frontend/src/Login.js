@@ -11,7 +11,7 @@ function Login() {
 
   const handleLogin = () => {
     axios
-      .post("http://127.0.0.1:5000/login", { email, password })
+      .post("http://127.0.0.1:5001/login", { email, password })
       .then((res) => {
         localStorage.setItem("email", email);
         navigate("/main");

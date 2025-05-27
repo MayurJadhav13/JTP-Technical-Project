@@ -14,7 +14,7 @@ function MainPage() {
   useEffect(() => {
     if (!email) return;
     axios
-      .get("http://127.0.0.1:5000/get-username", { params: { email } })
+      .get("http://127.0.0.1:5001/get-username", { params: { email } })
       .then((res) => setUsername(res.data.username || ""))
       .catch(() => setUsername(""));
   }, [email]);
@@ -23,7 +23,7 @@ function MainPage() {
   useEffect(() => {
     if (!email) return;
     axios
-      .get("http://127.0.0.1:5000/history", { params: { email } })
+      .get("http://127.0.0.1:5001/history", { params: { email } })
       .then((res) => {
         setHistory(res.data);
       })
@@ -45,7 +45,7 @@ function MainPage() {
     formData.append("email", email);
     formData.append("image", image);
     axios
-      .post("http://127.0.0.1:5000/recommend", formData)
+      .post("http://127.0.0.1:5001/recommend", formData)
       .then((res) => {
         setRecommendations(res.data);
         setHistory((prev) => [...res.data, ...prev]);
