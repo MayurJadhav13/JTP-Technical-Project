@@ -118,17 +118,29 @@ docker compose up --build
 </p>
 <h3>Home screen (New User)</h3>
 <p align="center">
-  <img src="assets/Homescreen_Newuser.png" alt="New Home screen"  />
+  <img src="assets/new user.png" alt="New Home screen"  />
 </p>
 <h3>Home screen (Existing User)</h3>
 <p align="center">
-  <img src="assets/Homescreen_Existinguser.png" alt="Existing Home screen"  />
+  <img src="assets/user-login.png" alt="Existing Home screen"  />
 </p>
 <h3>Get Recommendations</h3>
 <p align="center">
-  <img src="assets/Recommendations_from_upload.png" alt="Existing Home screen"  />
+  <img src="assets/Recommendation.png" alt="Existing Home screen"  />
 </p>
 <h3>View the product</h3>
 <p align="center">
-  <img src="assets/Product.png" alt="Product"  />
+  <img src="assets/product.png" alt="Product"  />
+</p>
+<h3>User Profile</h3>
+<p align="center">
+  <img src="assets/profile.png" alt="New Home screen"  />
+</p>
+<h3>View History (Existing User)</h3>
+<p align="center">
+  <img src="assets/history.png" alt="Existing Home screen"  />
+</p>
+<h3>View History (New User)</h3>
+<p align="center">
+  <img src="assets/new user history.png" alt="Existing Home screen"  />
 </p>
