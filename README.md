@@ -101,7 +101,7 @@ or
 docker compose up --build
 ```
 Just type http://localhost:3000 in your browser and the application will open.
-To get product recommendations, either select a predefined image or upload your own from the[sample_images](sample_images) folder.
+To get product recommendations, either select a predefined image or upload your own from the [sample_images](sample_images) folder.
 - Wait for a couple of seconds after uploading an image to receive the recommendation.
 
 ### 3. Close The Application
