@@ -90,7 +90,6 @@ Navigate to the project directory:
 ```bash
 cd JTP-Technical-Project/
 ```
-> ⚠️ Database Configuration: The .env file required for connecting to MongoDB Atlas has been shared via email. Please place the .env file in the backend folder. Your .env file path should look like this: backend/.env
 
 Launch the application by loading the saved model and embeddings with Docker:
 > Ensure Docker Desktop is running.
@@ -131,15 +130,16 @@ Returning users will see the same home screen, but with their past recommendatio
   <img src="assets/userhomescreen.png" alt="Existing Home screen"  />
 </p>
 <h3>Get Recommendations</h3>
-
-(a) Upload an image from the [sample_images](sample_images) folder provided in the repository and click on the Get Recommendations button.
-<p align="center">
-  <img src="assets/useupload.png" alt="Existing Home screen"  />
-</p>
-<p>(b) Choose from a set of predefined images available in the application to quickly test the recommendation system.</p>
+<p>(a) Choose from a set of predefined images available in the application to quickly test the recommendation system.</p>
 <p align="center">
   <img src="assets/getrecommendation.png" alt="Predefined Image Option" />
 </p>
+
+(b) Upload an image from the [sample_images](sample_images) folder provided in the repository and click on the Get Recommendations button.
+<p align="center">
+  <img src="assets/useupload.png" alt="Existing Home screen"  />
+</p>
+
 <h3>View the product</h3>
 Clicking on a recommended product opens a pop-out window with more details about that product.
 <p align="center">
