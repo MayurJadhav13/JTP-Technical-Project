@@ -77,7 +77,8 @@ This system is trained on a dataset sourced from Kaggle, consisting of 44,000 im
 > **Prerequisites:** Docker installed on your machine, and a basic understanding of Docker and terminal commands.
 
 ### 1. Repository Cloning: Execute the following command to clone the repository.
-- Open a new empty folder in VSCode, then open the terminal (within VSCode or your system terminal) and run the following command:
+- Run the following command on any terminal your system has:
+(You can use VSCode's terminal or your system's default terminal.)
 
 ```bash
 git clone -b main https://github.com/MayurJadhav13/JTP-Technical-Project
