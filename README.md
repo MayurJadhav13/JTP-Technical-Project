@@ -131,12 +131,12 @@ Returning users will see the same home screen, but with their past recommendatio
   <img src="assets/userhomescreen.png" alt="Existing Home screen"  />
 </p>
 <h3>Get Recommendations</h3>
-<p>(a) Choose from a set of predefined images available in the application to quickly test the recommendation system.</p>
+<p>(a) Choose from a set of predefined images available in the application and click on the Get Recommendations button to quickly test the recommendation system.</p>
 <p align="center">
   <img src="assets/getrecommendation.png" alt="Predefined Image Option" />
 </p>
 
-(b) Upload an image from the [sample_images](sample_images) folder provided in the repository and click on the Get Recommendations button.
+(b) Upload an image from the [sample_images](sample_images) folder provided in the repository and click on the Recommend from Upload button.
 <p align="center">
   <img src="assets/useupload.png" alt="Existing Home screen"  />
 </p>
