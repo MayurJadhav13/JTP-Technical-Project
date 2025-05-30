@@ -13,7 +13,7 @@
 
 ## Overview
 
-In everyday e-commerce applications, users receive product recommendations based on their activity and browsing history. Inspired by this, the project aims to develop a product recommendation system that suggests visually similar products based on an uploaded image. Using machine learning techniques such as image feature extraction and similarity matching, the system offers a personalized and intuitive shopping experience. It also tracks previous recommendations, making it easy for users to revisit or continue their search.
+In everyday e-commerce applications, users receive product recommendations based on their activity and browsing history. Inspired by this, the project aims to develop a product recommendation system that suggests visually similar products based on an uploaded image or selected image. Using machine learning techniques such as image feature extraction and similarity matching, the system offers a personalized and intuitive shopping experience. It also tracks previous recommendations, making it easy for users to revisit or continue their search.
 
 ## Dataset
 
