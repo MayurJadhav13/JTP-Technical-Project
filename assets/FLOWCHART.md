@@ -13,9 +13,9 @@
 
 - Developed a basic application using React (frontend) and Flask (backend).
 
-- The app allows users to upload images after successful authentication.
+- The app allows users to uploads an image or choose from pre-defined images after successful authentication.
 
-- Upon upload, the saved AutoEncoder model extracts features from the uploaded image.
+- Upon uploaded or selected, the saved AutoEncoder model extracts features from the uploaded or selected image.
 
 - Cosine similarity is calculated between the uploaded image's features and those stored in the database.
 

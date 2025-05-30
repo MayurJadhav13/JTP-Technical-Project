@@ -2,14 +2,14 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Dataset](#dataset)
-- [Technology Stack](#technology-stack)
-- [Approaches](#approaches)
-- [Workflow](#workflow)
-- [Train](#train)
-- [Launch Instructions](#launch-instructions)
-- [Screenshots](#screenshots)
+- [Overview](#overview) : A brief description summarizing the project's content.
+- [Dataset](#dataset) : Details about the dataset used in the project.
+- [Technology Stack](#technology-stack) : An overview of the technologies and tools implemented.
+- [Approaches](#approaches) : A description of all methods explored, along with justifications for choosing the specific technology stack.
+- [Workflow](#workflow) : The workflow diagram and a summary of the steps taken throughout the project.
+- [Train](#train) : Instruction on training the model.
+- [Installation Manual](#installation-manual) : Steps to run the project on your local system.
+- [User Manual](#user-manual) : Visuals showcasing the application's interface and features.
 
 ## Overview
 
@@ -50,7 +50,7 @@ This system is trained on a dataset sourced from Kaggle, consisting of 44,000 im
 ## Workflow
 
 <p align="center">
-  <img src="assests/Workflow.png" alt="Workflow"  />
+  <img src="assets/flowchartt.png" alt="Workflow"  />
 </p>
 
 [Read further](./assets/FLOWCHART.md)
@@ -72,11 +72,12 @@ This system is trained on a dataset sourced from Kaggle, consisting of 44,000 im
 
 > Connect to MongoDB Atlas, update the network access settings, and copy the connection string. Store the connection string in a .env file to ensure seamless backend execution.
 
-## Launch Instructions
+## Installation Manual
 
 > **Prerequisites:** Docker installed on your machine, and a basic understanding of Docker and terminal commands.
 
 ### 1. Repository Cloning: Execute the following command to clone the repository.
+- Open a new empty folder in VSCode, then open the terminal (within VSCode or your system terminal) and run the following command:
 
 ```bash
 git clone -b main https://github.com/MayurJadhav13/JTP-Technical-Project
@@ -89,9 +90,10 @@ Navigate to the project directory:
 ```bash
 cd JTP-Technical-Project/
 ```
+> ⚠️ Database Configuration: The .env file required for connecting to MongoDB Atlas has been shared via email. Please place the .env file in the backend folder. Your .env file path should look like this: backend/.env
 
 Launch the application by loading the saved model and embeddings with Docker:
-
+> Ensure Docker Desktop is running.
 ```bash
 docker-compose up --build
 ```
@@ -99,48 +101,66 @@ or
 ```bash
 docker compose up --build
 ```
-### Access Points:
+Just type http://localhost:3000 in your browser and the application will open.
+Use the images from the [sample_images](sample_images) folder to get recommendations.
+- Wait for a couple of seconds after uploading an image to receive the recommendation.
 
-- **Frontend**: The application can be accessed at http://localhost:3000
-- **Backend**: The Flask backend, serving the React frontend, is available at http://localhost:5000
+### 3. Close The Application
+- To logout from the current session, use the Logout option in the user profile. Then, return to the terminal window and press 'Ctrl + C' to stop the system.
 
-> ⚠️ Database Configuration: The .env file for connecting to MongoDB Atlas has not been uploaded for security reasons. Please contact the repository owner or train the model yourself and push the features to the database as outlined in the [train section](#train).
-
-## Screenshots
+## User Manual
 
 <h3>Signup Page</h3>
+New users can register by providing a username, email address, and a secure password.
 <p align="center">
   <img src="assets/Signup.png" alt="Home screen"  />
 </p>
 <h3>Login Page</h3>
+Registered users can log in using their email and password to access their account and previous activity.
 <p align="center">
   <img src="assets/Login.png" alt="Home screen"  />
 </p>
 <h3>Home screen (New User)</h3>
+After logging in, new users are directed to the home screen, where they can upload an image to get product recommendations. A user profile section is also accessible.
 <p align="center">
-  <img src="assets/new user.png" alt="New Home screen"  />
+  <img src="assets/newuserlogin.png" alt="New Home screen"  />
 </p>
 <h3>Home screen (Existing User)</h3>
+Returning users will see the same home screen, but with their past recommendations displayed for quick access and continued browsing.
 <p align="center">
-  <img src="assets/user-login.png" alt="Existing Home screen"  />
+  <img src="assets/userhomescreen.png" alt="Existing Home screen"  />
 </p>
 <h3>Get Recommendations</h3>
+
+(a) Upload an image from the [sample_images](sample_images) folder provided in the repository and click on the Get Recommendations button.
 <p align="center">
-  <img src="assets/Recommendation.png" alt="Existing Home screen"  />
+  <img src="assets/useupload.png" alt="Existing Home screen"  />
+</p>
+<p>(b) Choose from a set of predefined images available in the application to quickly test the recommendation system.</p>
+<p align="center">
+  <img src="assets/getrecommendation.png" alt="Predefined Image Option" />
 </p>
 <h3>View the product</h3>
+Clicking on a recommended product opens a pop-out window with more details about that product.
 <p align="center">
-  <img src="assets/product.png" alt="Product"  />
+  <img src="assets/viewproduct.png" alt="Product"  />
 </p>
 <h3>User Profile</h3>
+The profile section displays the username, a history of previously searched and recommended products, and includes a logout option.
 <p align="center">
-  <img src="assets/profile.png" alt="New Home screen"  />
+  <img src="assets/userprofile.png" alt="New Home screen"  />
 </p>
 <h3>View History (Existing User)</h3>
+Existing users can click on the History section to view all past uploads and the related recommendations
 <p align="center">
   <img src="assets/history.png" alt="Existing Home screen"  />
 </p>
 <h3>View History (New User)</h3>
+For new users, the History section will be empty until they upload an image and receive recommendations.
 <p align="center">
-  <img src="assets/new user history.png" alt="Existing Home screen"  />
+  <img src="assets/newuserhistory.png" alt="Existing Home screen"  />
 </p>
+
+## Contact 
+E-mail: jadhavmayur2035@gmail.com\
+LinkedIn: https://www.linkedin.com/in/mayurjadhav24/
