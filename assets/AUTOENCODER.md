@@ -51,4 +51,26 @@ The model follows a symmetric encoder-decoder structure:
 **6. Backpropagation & Optimization**:
 - The model uses Adam optimizer to update weights based on the loss, improving feature learning over each epoch.
  
+## Database: MongoDB Atlas
 
+Initially, features were saved using SQL due to its simplicity. However, SQL databases are typically locally hosted, making them inaccessible from other machines.  To ensure the system works on any laptop and supports remote access, MongoDB Atlas was chosen because:
+
+- It is cloud-based, allowing data access from anywhere.
+- Offers a free tier, suitable for development use.
+- Its schema-less nature fits well with dynamic feature outputs.
+- Native support for Python (via PyMongo) and better compatibility with machine learning pipelines.
+- High performance and scalability, especially for read/write-heavy ML workloads.
+
+## Frontend: React.js
+
+For building the user interface, React.js was chosen over other frontend frameworks like Angular or Vue because:
+
+- It offers a component-based structure, making the UI modular, reusable, and easier to manage.
+
+- Lightweight and fast, suitable for building responsive and interactive interfaces.
+
+- Strong community support and rich ecosystem of libraries for integration.
+
+- Easier to learn and implement, especially for projects focused more on functionality than heavy UI logic.
+
+- Works well with backend APIs and is widely used in modern full-stack applications.
