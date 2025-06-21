@@ -1,4 +1,4 @@
-# JTP Technical Project - Product Recommendation System
+# Product Recommendation System
 
 ## Table of Contents
 
